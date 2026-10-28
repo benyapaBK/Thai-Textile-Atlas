@@ -1,0 +1,6 @@
+{
+  "name": "Thai Textile Atlas - แผนที่สารสนเทศผ้าไทย",
+  "description": "บริการสารสนเทศดิจิทัลที่รวบรวม จัดหมวดหมู่ ค้นคืน และเชื่อมโยงองค์ความรู้เกี่ยวกับผ้าไทยจากหลากหลายสาขาวิชา โดยประยุกต์ใช้ LCC ร่วมกับดัชนีเฉพาะเรื่องผ้าไทย",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
