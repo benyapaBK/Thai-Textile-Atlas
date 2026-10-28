@@ -3086,6 +3086,7 @@
   <!-- ========================================================================
        VANILLA ES6+ SCRIPT & FIREBASE FIRESTORE MODULE + CSV AUTO-CLASSIFIER
        ======================================================================== -->
+  <script type="module" src="/src/firebase-backend.js"></script>
   <script type="module">
     import { thaiTextiles78 } from '/src/data/thaiTextiles78.js';
 
@@ -3393,6 +3394,7 @@
     let lastSavedSiteData = copySiteData(currentSiteData());
 
     async function requestApi(url, options = {}) {
+      if (window.firebaseBackend) return window.firebaseBackend.request(url, options);
       const response = await fetch(url, {
         credentials: 'same-origin',
         ...options,
@@ -6343,9 +6345,7 @@
       body.innerHTML = '<p style="color:var(--ink-muted)">กำลังโหลดประวัติ...</p>';
       document.getElementById('auditModal').classList.add('open');
       try {
-        const response = await fetch('/api/admin/audit?limit=100', { credentials: 'same-origin' });
-        if (!response.ok) throw new Error(response.status === 401 ? 'กรุณาเข้าสู่ระบบอีกครั้ง' : 'โหลดประวัติไม่สำเร็จ');
-        const { entries } = await response.json();
+        const { entries } = await requestApi('/api/admin/audit?limit=100');
         if (!entries.length) { body.innerHTML = '<p style="color:var(--ink-muted)">ยังไม่มีประวัติการแก้ไข</p>'; return; }
         body.innerHTML = entries.map(entry => {
           const s = entry.summary || {};

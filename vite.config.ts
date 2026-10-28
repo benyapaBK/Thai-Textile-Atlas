@@ -3,10 +3,13 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
 
-export default defineConfig(() => {
+export default defineConfig(({mode}) => {
   const apiPort = Number(process.env.API_PORT || 3001);
 
   return {
+    define: {
+      'import.meta.env.VITE_BACKEND': JSON.stringify(mode === 'firebase' ? 'firebase' : ''),
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

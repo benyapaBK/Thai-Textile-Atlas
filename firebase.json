@@ -1,8 +1,4 @@
 {
-  "functions": {
-    "source": "functions",
-    "runtime": "nodejs22"
-  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
@@ -15,13 +11,6 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "/api/**",
-        "function": {
-          "functionId": "api",
-          "region": "asia-southeast3"
-        }
-      },
       {
         "source": "**",
         "destination": "/index.html"
